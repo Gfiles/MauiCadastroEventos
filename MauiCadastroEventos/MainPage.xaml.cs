@@ -1,4 +1,7 @@
-﻿namespace MauiCadastroEventos
+﻿using MauiCadastroEventos.Models;
+using MauiCadastroEventos.Views;
+
+namespace MauiCadastroEventos
 {
     public partial class MainPage : ContentPage
     {
@@ -9,16 +12,21 @@
             InitializeComponent();
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        private async void CalcularCusto_Clicked(object sender, EventArgs e)
         {
-            count++;
+            Evento evento = new Evento();
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
+            evento.Nome = cmpNomeEvento.Text;
+            evento.DataInicio = cmpDataInicio.Date;
+            evento.DataFim = cmpDataFim.Date;
+            evento.NumParticipantes = int.Parse(cmpNumParticipantes.Text);
+            evento.Local = cmpLocal.Text;
+            evento.CustoParticipante = float.Parse(cmpCustoParticipante.Text);
 
-            SemanticScreenReader.Announce(CounterBtn.Text);
+            await Navigation.PushAsync(new NewPage1()
+            {
+                BindingContext = evento
+            });
         }
     }
 

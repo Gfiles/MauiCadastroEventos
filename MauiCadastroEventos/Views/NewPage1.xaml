@@ -1,7 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiCadastroEventos.MainPage"
+             x:Class="MauiCadastroEventos.Views.NewPage1"
+             Title="NewPage1"
              Shell.NavBarIsVisible="False">
 
     <ContentPage.Resources>
@@ -10,78 +11,90 @@
             <Setter Property="VerticalTextAlignment" Value="Center" />
         </Style>
     </ContentPage.Resources>
-    
+
     <ScrollView>
         <VerticalStackLayout
             Padding="30,0"
             Spacing="25">
 
             <Label
-                Text="Cadastro de Eventos"
+                Text="Resumo do Evento"
                 HorizontalOptions="Center"
                 FontSize="Header" />
 
 
-            <Grid RowDefinitions="*, *, *, *, *, *, *"
-                  ColumnDefinitions="*, 2*"
+            <Grid RowDefinitions="*, *, *, *, *, *, *, *"
+                  ColumnDefinitions="*, *"
                   RowSpacing="20">
 
                 <Label
                     Grid.Row="0" Grid.Column="0"
                     Text="Nome do Evento:" />
-                <Entry
+                <Label
                     Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
-                    x:Name="cmpNomeEvento"/>
-                
+                    Text="{Binding Nome} "/>
+
                 <Label
                     Grid.Row="1" Grid.Column="0"
-                    Text="Data de início" />
-                <DatePicker
+                    Text="Data de início:" />
+                <Label
                     Grid.Row="1" Grid.Column="1"
-                    x:Name="cmpDataInicio"
+                    Text="{Binding DataInicio, StringFormat='{0:D}'}"
                     />
 
                 <Label
                 Grid.Row="2" Grid.Column="0"
-                Text="Data de término"
+                Text="Data de término:"
                 />
-                <DatePicker
+                <Label
                     Grid.Row="2" Grid.Column="1"
-                    x:Name="cmpDataFim"
+                    Text="{Binding DataFim, StringFormat='{0:D}'}"
                     />
 
                 <Label
                     Grid.Row="3" Grid.Column="0"
-                    Text="Número de participantes"
+                    Text="Número de participantes:"
                     />
-                <Entry
+                <Label
                     Grid.Row="3" Grid.Column="1"
-                    x:Name="cmpNumParticipantes"
+                    Text="{Binding NumParticipantes}"
                     />
 
                 <Label
                     Grid.Row="4" Grid.Column="0"
-                    Text="Local do evento"
+                    Text="Local do evento:"
                     />
-                <Entry
+                <Label
                     Grid.Row="4" Grid.Column="1"
-                    x:Name="cmpLocal"/>
+                    Text="{Binding Local}"
+                    />
 
                 <Label
                     Grid.Row="5" Grid.Column="0"
-                    Text="Custo por participante"
+                    Text="Custo por participante:"
+ 
                     />
-                <Entry
+                <Label
                     Grid.Row="5" Grid.Column="1"
-                    x:Name="cmpCustoParticipante"/>
-
-                <Button Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2"
-                    x:Name="CalcularCusto"
-                    Text="Calcular custo" 
-                    Clicked="CalcularCusto_Clicked"
-                    HorizontalOptions="Fill" />
+                    Text="{Binding CustoParticipante, StringFormat='{0:C2}'}"
+                    />
+                
+                <Label
+                    Grid.Row="6" Grid.Column="0"
+                    Text="Custo Total do Evento:"
+                    FontSize="Medium"
+                    />
+                <Label
+                    Grid.Row="6" Grid.Column="1"
+                    Text="{Binding CustoTotalEvento, StringFormat='{0:C2}'}"
+                    FontSize="Medium"
+                    />
             </Grid>
-            
+            <Button
+                Text="Voltar"
+                Clicked="Button_Clicked"
+                />
+
         </VerticalStackLayout>
     </ScrollView>
 
